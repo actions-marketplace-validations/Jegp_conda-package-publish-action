@@ -18,12 +18,12 @@ check_if_meta_yaml_file_exists() {
 
 build_package(){
     conda build -c conda-forge -c bioconda --output-folder . .
-    conda convert -p osx-64 linux-64/*.tar.bz2
+    conda convert -p osx-64 /opt/conda/conda-bld/linux-64/*.tar.bz2
 }
 
 upload_package(){
     export ANACONDA_API_TOKEN=$INPUT_ANACONDATOKEN
-    anaconda upload --label main linux-64/*.tar.bz2
+    anaconda upload --label main /opt/conda/conda-bld/linux-64/*.tar.bz2
     anaconda upload --label main osx-64/*.tar.bz2
 }
 
