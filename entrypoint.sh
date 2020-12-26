@@ -3,6 +3,8 @@
 set -ex
 set -o pipefail
 
+shopt -s globstar
+
 go_to_build_dir() {
     if [ ! -z $INPUT_SUBDIR ]; then
         cd $INPUT_SUBDIR
@@ -17,7 +19,7 @@ check_if_meta_yaml_file_exists() {
 }
 
 build_package(){
-    conda build -c conda-forge -c bioconda --output-folder . .
+    conda build -c conda-forge -c pytorch -c bioconda --output-folder . .
     conda convert -p osx-64 /opt/conda/conda-bld/linux-64/*.tar.bz2
 }
 
