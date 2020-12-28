@@ -10,6 +10,12 @@ inputs:
     default: '.'
   AnacondaToken:
     description: 'Anaconda access Token'
+  platforms:
+    description: 'Platforms to publish to (osx/linux/win)'
+    default: 'linux osx win'
+  publishFlags:
+    description: 'Flags to use when publishing with Anaconda, such as user/org'
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
