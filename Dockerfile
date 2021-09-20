@@ -1,4 +1,4 @@
-FROM continuumio/miniconda3:4.9.2
+FROM continuumio/miniconda3:4.10.3
 
 LABEL "repository"="https://github.com/jegp/conda-package-publish-action"
 LABEL "maintainer"="Jens E. Pedersen <jens@jepedersen.dk>"
