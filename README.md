@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: publish-to-conda
-      uses: jegp/conda-package-publish-action@v1.2
+      uses: jegp/conda-package-publish-action@v1.6
       with:
         subDir: 'conda'
         AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}
@@ -47,4 +47,4 @@ jobs:
 2. Add it to the Secrets of the Github repository as `ANACONDA_TOKEN`
 
 ### Build Channels
-By Default, this Github Action will search for conda build dependancies (on top of the standard channels) in `conda-forge` and `bioconda`
+By Default, this Github Action will search for conda build dependencies in `conda-forge`

@@ -1,21 +1,21 @@
-name: 'Publish Conda package to Anaconda.org (updated 2020)'
-description: 'Build and Publish conda package to Anaconda'
-author: 'Jens E. Pedersen, modified by Andrew Prokhorenkov and Maxime Borry'
+name: "Publish Conda package to Anaconda.org (updated 2020)"
+description: "Build and Publish conda package to Anaconda"
+author: "Jens E. Pedersen, modified by Andrew Prokhorenkov and Maxime Borry"
 branding:
-  icon: 'package'  
-  color: 'purple'
-inputs: 
+  icon: "package"
+  color: "purple"
+inputs:
   subDir:
-    description: 'Sub-directory with conda recipe'
-    default: '.'
+    description: "Sub-directory with conda recipe"
+    default: "."
   AnacondaToken:
-    description: 'Anaconda access Token'
+    description: "Anaconda access Token"
   platforms:
-    description: 'Platforms to publish to (osx/linux/win)'
-    default: 'linux osx win'
+    description: "Platforms to publish to (osx/linux/win)"
+    default: "linux osx win"
   publishFlags:
-    description: 'Flags to use when publishing with Anaconda, such as user/org'
-    default: ''
+    description: "Flags to use when publishing with Anaconda, such as user/org"
+    default: ""
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"

@@ -25,7 +25,7 @@ check_if_meta_yaml_file_exists() {
 
 build_package(){
     # Build for Linux
-    conda build -c conda-forge -c pytorch -c bioconda --output-folder . .
+    conda mambabuild -c conda-forge --output-folder . .
 
     # Convert to other platforms: OSX, WIN
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
