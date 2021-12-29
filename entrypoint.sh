@@ -23,29 +23,33 @@ check_if_meta_yaml_file_exists() {
     fi
 }
 
-build_package(){
+build_package() {
     # Build for Linux
     conda mambabuild -c conda-forge --output-folder . .
 
     # Convert to other platforms: OSX, WIN
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
-    conda convert -p osx-64 linux-64/*.tar.bz2
+        conda convert -p osx-64 linux-64/*.tar.bz2
     fi
     if [[ $INPUT_PLATFORMS == *"win"* ]]; then
-    conda convert -p win-64 linux-64/*.tar.bz2
+        conda convert -p win-64 linux-64/*.tar.bz2
     fi
 }
 
-upload_package(){
-    export ANACONDA_API_TOKEN=$INPUT_ANACONDATOKEN
-    if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
-    anaconda upload --label main $INPUT_PUBLISHFLAGS osx-64/*.tar.bz2
-    fi
-    if [[ $INPUT_PLATFORMS == *"linux"* ]]; then
-    anaconda upload --label main -u $INPUT_PUBLISHFLAGS linux-64/*.tar.bz2
-    fi
-    if [[ $INPUT_PLATFORMS == *"win"* ]]; then
-    anaconda upload --label main -u $INPUT_PUBLISHFLAGS win-64/*.tar.bz2
+upload_package() {
+    if [[ $INPUT_ANACONDATOKEN -ne "" ]]; then
+        echo "Build complete, publishing to Anaconda with flags '${INPUT_PUBLISHFLAGS}'"
+        if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
+            anaconda upload --label main $INPUT_PUBLISHFLAGS osx-64/*.tar.bz2
+        fi
+        if [[ $INPUT_PLATFORMS == *"linux"* ]]; then
+            anaconda upload --label main -u $INPUT_PUBLISHFLAGS linux-64/*.tar.bz2
+        fi
+        if [[ $INPUT_PLATFORMS == *"win"* ]]; then
+            anaconda upload --label main -u $INPUT_PUBLISHFLAGS win-64/*.tar.bz2
+        fi
+    else
+        echo "Build complete, ignoring upload"
     fi
 }
 
